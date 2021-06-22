@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{room_name}} CHAT ROOM</title>
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    </head>
+    <body>
+        <!-- Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+
+        <!-- MAIN PAGE -->
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <!-- 50% of the page in center -->
+                <div class="col-7">
+                    <form>
+                        <div class="form-group">
+                            <label>{{room_name}} CHAT ROOM</label>
+                            <textarea spellcheck="false" id="messages-display-area" class="form-control" rows=10 readonly=""></textarea>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" name="message-input" class="form-control" required="" id="message-input">
+                        </div>
+                        <br>
+
+                        <!-- why isn't the btn-block work :| -->
+                        <button type="button" onclick="sendMessage()" class="btn btn-primary btn-lg btn-block" id="send-message">SEND</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- set room_name and username python varibales in JS format -->
+        {{ room_name|json_script:"room-name" }}
+        {{ request.user.username|json_script:"username" }}
+
+        <!-- WS connection setup -->
+        <script>
+            // get the room-name and username values
+            const roomName = JSON.parse(document.getElementById("room-name").textContent);
+            const username = JSON.parse(document.getElementById("username").textContent);
+
+            // get chat socket connection address
+            const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`); // SOMTHING LIKE: ws://crooms.ir:443/ws/chat/room_name/
+
+
+            // RECIVE REPLIED MESSAGE FOM SERVER
+            chatSocket.onmessage = (e) => {
+                const data = JSON.parse(e.data);
+                document.querySelector("#messages-display-area").value += `${data["username"] ? data["username"] : "@-ANONYMOUS" }: ${data["message"]}\n`;
+            }
+
+
+            // send  buttun click( sned new message)
+            function sendMessage(e){
+                const messageInput = document.querySelector("#message-input");
+                const message = messageInput.value;
+
+                // send message and clear the input
+                if(message){
+                    chatSocket.send(JSON.stringify({
+                        "message": message,
+
+                        // we can send more detail about the user in json type and name it whole USER
+                        // or even send the whole USER object wich we cllect username fron in line:41
+                        "username": username,
+                    }));
+                }
+                messageInput.value = "";
+            }
+
+            // enter click sending
+            document.querySelector("#send-message").onkeyup = function(e){
+                if(e.keyCode === 13){
+                    return sendMessage()
+                }
+            }
+        </script>
+
+
+    </body>
+</html>
