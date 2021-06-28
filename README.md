@@ -13,12 +13,19 @@ SOME OF SCREEN SHOTS OF DJANGO TEMPLATES 👇👇
 ![crooms home page](https://github.com/asghara04/crooms/blob/master/IMAGES/chat.png)
 ![crooms chat room page](https://github.com/asghara04/crooms/blob/master/IMAGES/devs-room.png)
 
+<<<<<<< HEAD
+=======
+SOME OF SCREEN SHOTS 👇👇
+![crooms home page](https://github.com/asghara04/crooms/blob/master/IMAGES/chat.png)
+![crooms home page](https://github.com/asghara04/crooms/blob/master/IMAGES/devs-room.png)
+>>>>>>> 1358f55517d89feb3c165ac3a8e14e0f2968ebee
 
 p.s: i havn't used redis_server and i commented more detail in settings.py about that.
 
 ### SUPPORT
 
 Follow Me On Instagram By The Link Bellow:
+<<<<<<< HEAD
 [**Asghar Ale Instagram**](https://instagram.com/asghar.a04/)
 [**Asghar Ale Youtube**](https://m.youtube.com/channel/UCH7JSiiuMVFLYRrO5n3UchA)
 [**Asghar Ale Github**](https://github.com/asghara04/)
@@ -28,3 +35,6 @@ Buy Me a Coffee with:
 XRP: rrhXWEwk7wpsdV77Wcb7S3VFRSt7EGGHU4
 
 _Donate Me with XRP Coin💖_
+=======
+[Asghar Ale Instagram](https://instagram.com/asghar.a04/)
+>>>>>>> 1358f55517d89feb3c165ac3a8e14e0f2968ebee
