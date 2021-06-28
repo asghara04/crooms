@@ -31,6 +31,4 @@ Buy Me a Coffee with:
 
 XRP: rrhXWEwk7wpsdV77Wcb7S3VFRSt7EGGHU4
 
-*Donate Me with XRP Coin💖*
-=======
-[Asghar Ale Instagram](https://instagram.com/asghar.a04/)
+Donaye Me With XRP Coin
