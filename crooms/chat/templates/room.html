@@ -29,7 +29,6 @@
                         </div>
                         <br>
 
-                        <!-- why isn't the btn-block work :| -->
                         <button type="button" onclick="sendMessage()" class="btn btn-primary btn-lg btn-block" id="send-message">SEND</button>
                     </form>
                 </div>
@@ -50,7 +49,7 @@
             const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`); // SOMTHING LIKE: ws://crooms.ir:443/ws/chat/room_name/
 
 
-            // RECIVE REPLIED MESSAGE FOM SERVER
+            // RECIVE REPLIED MESSAGE FROM THE SERVER
             chatSocket.onmessage = (e) => {
                 const data = JSON.parse(e.data);
                 document.querySelector("#messages-display-area").value += `${data["username"] ? data["username"] : "@-ANONYMOUS" }: ${data["message"]}\n`;
@@ -73,13 +72,6 @@
                     }));
                 }
                 messageInput.value = "";
-            }
-
-            // enter click sending
-            document.querySelector("#send-message").onkeyup = function(e){
-                if(e.keyCode === 13){
-                    return sendMessage()
-                }
             }
         </script>
 

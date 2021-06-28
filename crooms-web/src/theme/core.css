@@ -1,0 +1,6 @@
+.p-f-centerize-f{
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	flex-flow: wrap;
+}
